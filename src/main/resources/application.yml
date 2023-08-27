@@ -1,0 +1,60 @@
+# ===================================================================
+# Server specific properties
+# ===================================================================
+server:
+  port: 8300
+# ===================================================================
+# Spring specific properties
+# ===================================================================
+spring:
+  application:
+    name: provider-price-service
+  # ===================================================================
+  # Task execution and Scheduling specific properties
+  # ===================================================================
+  task:
+    execution:
+      thread-name-prefix: task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: scheduling-
+      pool:
+        size: 10
+  # ===================================================================
+  # Feign client config
+  # ===================================================================
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 160000000
+        readTimeout: 160000000
+        loggerLevel: basic
+# =====================================================================
+# Application specific properties
+# =====================================================================
+application:
+  locale: ${LOCALE:en-US}
+# =====================================================================
+# Provider specific properties
+# =====================================================================
+provider:
+  binance:
+    token: 
+    userName: 
+    providerName: BINANCE
+    wss:
+      url: wss://stream.binance.com/stream
+    api:
+      host: https://www.binance.com
+      url: 
+        orderBook: /api/v3/depth
+
+logging:
+  config: classpath:${LOG_CONFIG:log4j2.xml}
+  level:
+    ROOT: ${LOG_LEVEL:INFO}
+    '[vn.sparkminds.provider]': ${LOG_LEVEL:INFO}
